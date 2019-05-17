@@ -2,6 +2,11 @@ package com.qindadai.imooc.festec;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.qindadai.latte.activities.ProxyActivity;
+import com.qindadai.latte.app.Latte;
+import com.qindadai.latte.delegates.LatteDelegate;
 
 /***
 
@@ -42,16 +47,13 @@ import android.os.Bundle;
  第三课 ：
   建立项目
 
-
  *
  *
  */
-public class MainActivity extends AppCompatActivity {
+public class ExampleActivity extends ProxyActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    public LatteDelegate setRootDelegate() {
+        return new ExampleDelegate() ;
     }
 }

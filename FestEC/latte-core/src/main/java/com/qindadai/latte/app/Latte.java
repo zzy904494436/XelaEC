@@ -2,6 +2,7 @@ package com.qindadai.latte.app;
 
 import android.content.Context;
 
+import java.util.HashMap;
 import java.util.WeakHashMap;
 
 /**
@@ -15,8 +16,12 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
-    public static WeakHashMap<String, Object> getConfigurations() {
+    public static HashMap<String, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
+    }
+
+    public static Context getApplication(){
+        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 
 

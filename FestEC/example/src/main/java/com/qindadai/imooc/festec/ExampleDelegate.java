@@ -15,7 +15,6 @@ import com.qindadai.latte.net.callback.ISuccess;
  * Created by mymac on 2019/1/9.
  * func:
  */
-
 public class ExampleDelegate extends LatteDelegate {
     @Override
     public Object setLayout() {
@@ -30,8 +29,7 @@ public class ExampleDelegate extends LatteDelegate {
     //建造者模式
     private void testRestClient() {
         RestClient.builder()
-                .url("http://news.baidu.com/")
-//                .params("", "")
+                .url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override

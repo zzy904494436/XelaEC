@@ -7,6 +7,7 @@ import com.qindadai.latte.net.callback.IFailure;
 import com.qindadai.latte.net.callback.IRequest;
 import com.qindadai.latte.net.callback.ISuccess;
 import com.qindadai.latte.net.callback.RequestCallbacks;
+import com.qindadai.latte.net.download.DownloadHandler;
 import com.qindadai.latte.ui.LatteLoader;
 import com.qindadai.latte.ui.LoaderStyle;
 
@@ -40,6 +41,10 @@ public class RestClient {
     private final File FILE;
     private LoaderStyle LOADER_STYLE;
     private Context CONTEXT;
+    //download
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
 
     public RestClient(String url,
                       Map<String, Object> params,
@@ -50,7 +55,10 @@ public class RestClient {
                       RequestBody body,
                       File file,
                       Context context,
-                      LoaderStyle loaderStyle) {
+                      LoaderStyle loaderStyle,
+                      String downloadir,
+                      String extension,
+                      String name) {
         this.URL = url;
         this.PARAMS.putAll(params);
         this.REQUEST = request;
@@ -61,6 +69,9 @@ public class RestClient {
         this.FILE = file;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
+        this.DOWNLOAD_DIR = downloadir;
+        this.EXTENSION = extension;
+        this.NAME = name;
     }
 
     public static RestClientBuilder builder() {
@@ -107,9 +118,9 @@ public class RestClient {
         }
 
         if (call != null) {
-            //住县城
+            //主线程
 //            call.execute()
-            //子县城
+            //子线程
             call.enqueue(getRequesrCallBack());
         }
     }
@@ -154,4 +165,8 @@ public class RestClient {
         request(HttpMethod.DELETE);
     }
 
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, SUCCESS, FAILURE, ERROR, DOWNLOAD_DIR, EXTENSION, NAME)
+                .handleDownload();
+    }
 }

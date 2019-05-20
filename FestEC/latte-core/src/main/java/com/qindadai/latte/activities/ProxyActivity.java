@@ -2,9 +2,9 @@ package com.qindadai.latte.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.ContentFrameLayout;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ContentFrameLayout;
 
 import com.qindadai.latte.R;
 import com.qindadai.latte.delegates.LatteDelegate;

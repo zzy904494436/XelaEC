@@ -1,9 +1,10 @@
 package com.qindadai.imooc.festec;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.net.RestClient;
@@ -51,7 +52,6 @@ public class ExampleDelegate extends LatteDelegate {
                 })
                 .build()
                 .get();
-
     }
 
 }

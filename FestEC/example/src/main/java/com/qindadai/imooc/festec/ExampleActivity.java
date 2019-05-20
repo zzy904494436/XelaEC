@@ -1,11 +1,7 @@
 package com.qindadai.imooc.festec;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.qindadai.latte.activities.ProxyActivity;
-import com.qindadai.latte.app.Latte;
 import com.qindadai.latte.delegates.LatteDelegate;
 
 /***

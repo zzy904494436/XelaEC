@@ -1,6 +1,6 @@
 package com.qindadai.latte.net.interceptors;
 
-import android.support.annotation.RawRes;
+import androidx.annotation.RawRes;
 
 import com.qindadai.latte.util.file.FileUtil;
 

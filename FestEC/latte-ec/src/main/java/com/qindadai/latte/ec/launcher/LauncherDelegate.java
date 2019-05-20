@@ -1,11 +1,13 @@
 package com.qindadai.latte.ec.launcher;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+
+import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.R;
 import com.qindadai.latte.net.RestCreator;
@@ -15,9 +17,9 @@ import com.qindadai.latte.util.timer.ITimerListener;
 import java.util.Timer;
 import java.util.WeakHashMap;
 
+import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -26,11 +28,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by mymac on 2019/1/10.
  * func:
  */
-
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
-    //    @BindView(R.id.)  //todo
-    AppCompatTextView mTvTimer;
+    @BindView(R2.id.tv_launcher_timer)
+    private AppCompatTextView mTvTimer;
 
     private Timer mTimer = null;
 
@@ -41,6 +42,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+
+    }
+
+    @Override
+    public void onTimer() {
 
     }
 
@@ -136,8 +142,4 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                 });
     }
 
-    @Override
-    public void onTimer() {
-
-    }
 }

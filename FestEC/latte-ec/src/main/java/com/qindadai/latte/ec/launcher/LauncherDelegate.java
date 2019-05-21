@@ -1,6 +1,7 @@
 package com.qindadai.latte.ec.launcher;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,12 +13,15 @@ import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.R;
 import com.qindadai.latte.net.RestCreator;
 import com.qindadai.latte.net.rx.RxRestClient;
+import com.qindadai.latte.util.timer.BaseTimerTask;
 import com.qindadai.latte.util.timer.ITimerListener;
 
+import java.text.MessageFormat;
 import java.util.Timer;
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,7 +37,19 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     @BindView(R2.id.tv_launcher_timer)
     private AppCompatTextView mTvTimer;
 
-    private Timer mTimer = null;
+    @OnClick(R2.id.tv_launcher_timer)
+    void onClickTimerView() {
+
+    }
+
+    private Timer mTimer;
+    private int mCount = 5;
+
+    private void initTimer() {
+        mTimer = new Timer();
+        final BaseTimerTask task = new BaseTimerTask(this);
+        mTimer.schedule(task, 0, 1000);
+    }
 
     @Override
     public Object setLayout() {
@@ -42,12 +58,26 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        initTimer();
     }
 
     @Override
     public void onTimer() {
-
+        getProxyActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mTvTimer != null) {
+                    mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
+                    mCount--;
+                    if (mCount < 0) {
+                        if (mTimer != null) {
+                            mTimer.cancel();
+                            mTimer = null;
+                        }
+                    }
+                }
+            }
+        });
     }
 
     // TODO: 2019/5/17 没啥软用 测试rx

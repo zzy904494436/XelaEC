@@ -3,6 +3,7 @@ package com.qindadai.imooc.festec;
 
 import com.qindadai.latte.activities.ProxyActivity;
 import com.qindadai.latte.delegates.LatteDelegate;
+import com.qindadai.latte.ec.launcher.LauncherDelegate;
 
 /***
 
@@ -15,8 +16,6 @@ import com.qindadai.latte.delegates.LatteDelegate;
          ---    代码生成器annotationProcessor apt  latte-compiler(java) （ 通过注解生成动态代码）
 
  latte-拿铁
-
-
 
  第二课
     1: 注解module  latte-annotations java
@@ -42,7 +41,6 @@ import com.qindadai.latte.delegates.LatteDelegate;
 
  第三课 ：
   建立项目
-
  *
  *
  */
@@ -50,6 +48,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new ExampleDelegate() ;
+        return new LauncherDelegate() ;
     }
 }

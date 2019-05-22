@@ -20,12 +20,13 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
  */
 public abstract class BaseDelegate extends SwipeBackFragment {
 
-    public abstract Object setLayout();
-
     private Unbinder mUnbinder = null;
 
-    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
+
+    public abstract Object setLayout();
+
+    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

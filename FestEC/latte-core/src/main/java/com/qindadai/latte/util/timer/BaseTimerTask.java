@@ -1,6 +1,5 @@
 package com.qindadai.latte.util.timer;
 
-
 import java.util.TimerTask;
 
 /**

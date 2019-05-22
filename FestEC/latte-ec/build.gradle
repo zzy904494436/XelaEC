@@ -32,4 +32,8 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
     api project(':latte-core')
+    //ButterKnife依赖
+    api 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
 }

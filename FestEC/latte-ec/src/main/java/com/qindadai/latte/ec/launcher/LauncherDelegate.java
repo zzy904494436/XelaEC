@@ -1,16 +1,16 @@
 package com.qindadai.latte.ec.launcher;
 
 import android.os.Bundle;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.delegates.LatteDelegate;
-import com.qindadai.latte.ec.R;
 import com.qindadai.latte.net.RestCreator;
 import com.qindadai.latte.net.rx.RxRestClient;
 import com.qindadai.latte.util.timer.BaseTimerTask;
@@ -35,20 +35,22 @@ import io.reactivex.schedulers.Schedulers;
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @BindView(R2.id.tv_launcher_timer)
-    private AppCompatTextView mTvTimer;
-
-    @OnClick(R2.id.tv_launcher_timer)
-    void onClickTimerView() {
-
-    }
+    public AppCompatTextView mTvTimer;
 
     private Timer mTimer;
     private int mCount = 5;
 
+    @OnClick(R2.id.tv_launcher_timer)
+    public void onClickTimerView() {
+    }
+
+
     private void initTimer() {
         mTimer = new Timer();
+        Log.e("asdasdasdasdasd", "initTimer:1 " );
         final BaseTimerTask task = new BaseTimerTask(this);
         mTimer.schedule(task, 0, 1000);
+        Log.e("asdasdasdasdasd", "initTimer:2 " );
     }
 
     @Override
@@ -58,6 +60,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        Log.e("asdasdasdasdasd", "onBindView: " );
         initTimer();
     }
 
@@ -66,6 +69,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         getProxyActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Log.e("asdasdasdasdasd", "onTimer: " );
                 if (mTvTimer != null) {
                     mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
                     mCount--;
@@ -79,6 +83,10 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
             }
         });
     }
+
+
+
+
 
     // TODO: 2019/5/17 没啥软用 测试rx
     void onCallRxget() {

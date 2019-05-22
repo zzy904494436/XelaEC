@@ -13,6 +13,8 @@ import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.net.RestCreator;
 import com.qindadai.latte.net.rx.RxRestClient;
+import com.qindadai.latte.ui.launcher.ScrollLauncherTag;
+import com.qindadai.latte.util.storage.LattePreference;
 import com.qindadai.latte.util.timer.BaseTimerTask;
 import com.qindadai.latte.util.timer.ITimerListener;
 
@@ -42,15 +44,19 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     public void onClickTimerView() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
-
 
     private void initTimer() {
         mTimer = new Timer();
-        Log.e("asdasdasdasdasd", "initTimer:1 " );
+        Log.e("asdasdasdasdasd", "initTimer:1 ");
         final BaseTimerTask task = new BaseTimerTask(this);
         mTimer.schedule(task, 0, 1000);
-        Log.e("asdasdasdasdasd", "initTimer:2 " );
+        Log.e("asdasdasdasdasd", "initTimer:2 ");
     }
 
     @Override
@@ -60,8 +66,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        Log.e("asdasdasdasdasd", "onBindView: " );
         initTimer();
+    }
+
+    private void checkIsShowScroll() {
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录app
+        }
     }
 
     @Override
@@ -69,7 +82,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         getProxyActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.e("asdasdasdasdasd", "onTimer: " );
                 if (mTvTimer != null) {
                     mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
                     mCount--;
@@ -77,15 +89,13 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }
             }
         });
     }
-
-
-
 
 
     // TODO: 2019/5/17 没啥软用 测试rx

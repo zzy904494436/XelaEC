@@ -1,5 +1,6 @@
 package com.qindadai.latte.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.net.RestClient;
 import com.qindadai.latte.net.callback.ISuccess;
+import com.qindadai.latte.util.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,20 +31,32 @@ public class SignInDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText pswdView;
 
+    private ISignListener mISignListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
 
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if (checkForm()) {
-//            RestClient.builder()
-//                    .url("sign_in")
-//                    .params("", "")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void OnSuccess(String response) {
-//                        }
-//                    })
-//                    .build()
-//                    .post();
+            RestClient.builder()
+                    .url("sign_in")
+                    .params("", "")
+                    .success(new ISuccess() {
+                        @Override
+                        public void OnSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE" ,response);
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .build()
+                    .post();
             Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
         }
     }

@@ -1,18 +1,23 @@
 package com.qindadai.latte.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.qindadai.latte.app.AccountManager;
+import com.qindadai.latte.app.IUserChecker;
 import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.delegates.LatteDelegate;
+import com.qindadai.latte.ec.sign.ISignListener;
 import com.qindadai.latte.net.RestCreator;
 import com.qindadai.latte.net.rx.RxRestClient;
+import com.qindadai.latte.ui.launcher.ILauncherListener;
+import com.qindadai.latte.ui.launcher.OnLauncherFinishTag;
 import com.qindadai.latte.ui.launcher.ScrollLauncherTag;
 import com.qindadai.latte.util.storage.LattePreference;
 import com.qindadai.latte.util.timer.BaseTimerTask;
@@ -42,6 +47,17 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     private Timer mTimer;
     private int mCount = 5;
 
+    private ILauncherListener launcherListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            launcherListener = (ILauncherListener) activity;
+        }
+    }
+
+
     @OnClick(R2.id.tv_launcher_timer)
     public void onClickTimerView() {
         if (mTimer != null) {
@@ -53,10 +69,8 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     private void initTimer() {
         mTimer = new Timer();
-        Log.e("asdasdasdasdasd", "initTimer:1 ");
         final BaseTimerTask task = new BaseTimerTask(this);
         mTimer.schedule(task, 0, 1000);
-        Log.e("asdasdasdasdasd", "initTimer:2 ");
     }
 
     @Override
@@ -74,6 +88,21 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
             start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录app
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (launcherListener != null) {
+                        launcherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (launcherListener != null) {
+                        launcherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

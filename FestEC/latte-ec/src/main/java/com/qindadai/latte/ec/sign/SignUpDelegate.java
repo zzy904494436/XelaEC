@@ -1,5 +1,6 @@
 package com.qindadai.latte.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.net.RestClient;
 import com.qindadai.latte.net.callback.ISuccess;
+import com.qindadai.latte.util.log.LatteLogger;
 
 import java.util.regex.Pattern;
 
@@ -36,6 +38,16 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_repassword)
     TextInputEditText repswdView;
 
+    private ISignListener mISignListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkForm()) {
@@ -45,6 +57,8 @@ public class SignUpDelegate extends LatteDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void OnSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignUp(response , mISignListener );
                         }
                     })
                     .build()

@@ -9,13 +9,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.joanzapata.iconify.widget.IconTextView;
 import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.net.RestClient;
 import com.qindadai.latte.net.callback.ISuccess;
 import com.qindadai.latte.util.log.LatteLogger;
+import com.qindadai.latte.wechat.LatteWechat;
+import com.qindadai.latte.wechat.callbacks.IWXSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,7 +42,6 @@ public class SignInDelegate extends LatteDelegate {
         }
     }
 
-
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if (checkForm()) {
@@ -51,7 +51,7 @@ public class SignInDelegate extends LatteDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void OnSuccess(String response) {
-                            LatteLogger.json("USER_PROFILE" ,response);
+                            LatteLogger.json("USER_PROFILE", response);
                             SignHandler.onSignIn(response, mISignListener);
                         }
                     })
@@ -68,6 +68,12 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick(R2.id.itv_sign_in_wechat)
     void onClickWechat() {
+        LatteWechat.getInstance().onSignSuccess(new IWXSignInCallback() {
+            @Override
+            public void onSignInCallback(String userInfo) {
+
+            }
+        }).signIn();
     }
 
     private boolean checkForm() {

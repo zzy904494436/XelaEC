@@ -9,5 +9,8 @@ public enum ConfigKeys {
     APPLICATION_CONTEXT,
     CONFIG_READY,
     ICON,
-    INTERCEPTER
+    INTERCEPTER,
+    WECHAT_ID,
+    WECHAT_SECRET,
+    ACTIVITY
 }

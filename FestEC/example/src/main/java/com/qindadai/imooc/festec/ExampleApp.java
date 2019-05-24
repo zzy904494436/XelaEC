@@ -23,9 +23,11 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withWechatAppId("")
+                .withWechatAppSecret("")
                 .configure();
         //初始化 Stetho
-        initStetho();
+//        initStetho();
         //初始化 data
         DatabaseManager.getInstance().init(this);
     }

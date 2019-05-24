@@ -32,13 +32,12 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation 'junit:junit:4.12'
-    api project(':latte-ec')
-//    androidTestCompile('com.android.support:support-annotations:26.1.0') {
-//        force = true
-//    }
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation 'junit:junit:4.12'
+
+    api project(':latte-ec')
+    compileOnly project(':latte-annotations')
     annotationProcessor project(':latte-compiler')
 
     api 'com.facebook.stetho:stetho:1.4.2'

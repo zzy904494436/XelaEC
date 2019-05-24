@@ -18,8 +18,16 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+
     public static HashMap<Object, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
+    }
+
+    public static <T> T getConfiguration(ConfigKeys key) {
+        return getConfigurator().getConfiguration(key);
     }
 
     public static Context getApplication() {
@@ -27,7 +35,4 @@ public final class Latte {
     }
 
 
-    public static Object getConfiguration(ConfigKeys key) {
-        return getConfigurations().get(key);
-    }
 }

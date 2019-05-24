@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.qindadai.latte.activities.ProxyActivity;
+import com.qindadai.latte.app.Latte;
 import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.launcher.LauncherDelegate;
 import com.qindadai.latte.ec.sign.ISignListener;
@@ -64,6 +65,7 @@ public class ExampleActivity extends ProxyActivity implements
         if (actionBar != null) {
             actionBar.hide();
         }
+        Latte.getConfigurator().withActivity(this);
     }
 
     @Override

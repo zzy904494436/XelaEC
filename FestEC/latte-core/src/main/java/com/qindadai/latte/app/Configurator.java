@@ -1,5 +1,7 @@
 package com.qindadai.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -58,7 +60,6 @@ public class Configurator {
     }
 
 
-
     private void initIcons() {
         if (ICONS.size() > 0) {
             final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
@@ -73,16 +74,32 @@ public class Configurator {
         return this;
     }
 
-    public final Configurator withInterceptor(Interceptor interceptor){
+    public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTER , INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTER, INTERCEPTORS);
         return this;
     }
 
-    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTER , INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTER, INTERCEPTORS);
         return this;
     }
+
+    public final Configurator withWechatAppId(String appid) {
+        LATTE_CONFIGS.put(ConfigKeys.WECHAT_ID, appid);
+        return this;
+    }
+
+    public final Configurator withWechatAppSecret(String appSecret) {
+        LATTE_CONFIGS.put(ConfigKeys.WECHAT_SECRET, appSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
 
 }

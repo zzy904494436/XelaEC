@@ -4,10 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-
 import com.qindadai.latte.activities.ProxyActivity;
 import com.qindadai.latte.delegates.LatteDelegate;
-import com.qindadai.latte.ec.launcher.LauncherDelegate;
+import com.qindadai.latte.ec.sign.SignInDelegate;
+import com.qindadai.latte.ec.sign.SignUpDelegate;
 
 /***
 
@@ -60,6 +60,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignInDelegate();
     }
 }

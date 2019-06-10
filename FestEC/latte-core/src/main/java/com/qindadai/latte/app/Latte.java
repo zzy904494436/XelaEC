@@ -2,10 +2,7 @@ package com.qindadai.latte.app;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import okhttp3.Interceptor;
 
 /**
  * Created by mymac on 2019/1/9.

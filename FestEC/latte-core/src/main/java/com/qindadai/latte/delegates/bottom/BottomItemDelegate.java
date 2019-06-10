@@ -33,7 +33,7 @@ public abstract class BottomItemDelegate extends LatteDelegate implements View.O
                 Toast.makeText(getContext(), "双击退出", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
             } else {
-                _mActivity.finish(); //宿主activity
+                _mActivity.finish();        //宿主activity
                 if (mExitTime != 0) {
                     mExitTime = 0;
                 }

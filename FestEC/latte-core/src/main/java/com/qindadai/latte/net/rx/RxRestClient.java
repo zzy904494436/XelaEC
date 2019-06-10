@@ -3,15 +3,7 @@ package com.qindadai.latte.net.rx;
 import android.content.Context;
 
 import com.qindadai.latte.net.HttpMethod;
-import com.qindadai.latte.net.RestClientBuilder;
 import com.qindadai.latte.net.RestCreator;
-import com.qindadai.latte.net.RestService;
-import com.qindadai.latte.net.callback.IError;
-import com.qindadai.latte.net.callback.IFailure;
-import com.qindadai.latte.net.callback.IRequest;
-import com.qindadai.latte.net.callback.ISuccess;
-import com.qindadai.latte.net.callback.RequestCallbacks;
-import com.qindadai.latte.net.download.DownloadHandler;
 import com.qindadai.latte.ui.LatteLoader;
 import com.qindadai.latte.ui.LoaderStyle;
 

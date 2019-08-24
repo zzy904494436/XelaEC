@@ -13,6 +13,8 @@ import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.R;
 import com.qindadai.latte.ec.R2;
 import com.qindadai.latte.net.RestClient;
+import com.qindadai.latte.net.callback.IError;
+import com.qindadai.latte.net.callback.IFailure;
 import com.qindadai.latte.net.callback.ISuccess;
 import com.qindadai.latte.util.log.LatteLogger;
 import com.qindadai.latte.wechat.LatteWechat;
@@ -51,8 +53,20 @@ public class SignInDelegate extends LatteDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void OnSuccess(String response) {
-                            LatteLogger.json("USER_PROFILE", response);
+                            LatteLogger.json("USER_PROFILE ", response);
                             SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            LatteLogger.e("USER_PROFILE ", "onFailure()");
+                        }
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            LatteLogger.e("USER_PROFILE ", "IError()");
                         }
                     })
                     .build()

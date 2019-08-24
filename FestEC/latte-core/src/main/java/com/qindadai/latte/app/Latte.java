@@ -7,7 +7,6 @@ import java.util.HashMap;
 /**
  * Created by mymac on 2019/1/9.
  */
-
 public final class Latte {
 
     public static Configurator init(Context context) {
@@ -30,6 +29,5 @@ public final class Latte {
     public static Context getApplication() {
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT);
     }
-
 
 }

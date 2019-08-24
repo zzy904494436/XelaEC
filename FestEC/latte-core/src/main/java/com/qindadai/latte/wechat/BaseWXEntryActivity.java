@@ -23,7 +23,6 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
     //微信发送请求到第三方应用后的回调
     @Override
     public void onReq(BaseReq baseReq) {
-
     }
 
     //第三方应用请求到微信后的回调

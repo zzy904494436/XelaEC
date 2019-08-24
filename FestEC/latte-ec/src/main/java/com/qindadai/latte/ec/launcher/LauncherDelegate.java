@@ -126,8 +126,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         });
     }
 
-
-    // TODO: 2019/5/17 没啥软用 测试rx
     void onCallRxget() {
         final String url = "index.php";
         final WeakHashMap<String, Object> params = new WeakHashMap<>();

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * Created by mymac on 2019-05-24.
- * func:
+ * func :
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)      // 源码阶段

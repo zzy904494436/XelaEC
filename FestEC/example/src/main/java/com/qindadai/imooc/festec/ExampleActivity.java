@@ -93,9 +93,9 @@ public class ExampleActivity extends ProxyActivity implements
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_SHORT).show();
                 /***
-                 * 启动后pop
+                 * 启动后 pop
                  */
-                startWithPop(new SignInDelegate());
+                startWithPop(new ExampleDelegate());
                 break;
             default:
                 break;

@@ -27,7 +27,7 @@ public class ExampleApp extends Application {
                 .withWechatAppSecret("")
                 .configure();
         //初始化 Stetho
-//        initStetho();
+        //initStetho();
         //初始化 data
         DatabaseManager.getInstance().init(this);
     }

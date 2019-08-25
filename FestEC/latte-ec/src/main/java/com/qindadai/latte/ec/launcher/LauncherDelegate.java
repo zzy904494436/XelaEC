@@ -45,7 +45,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     public AppCompatTextView mTvTimer;
 
     private Timer mTimer;
-    private int mCount = 5;
+    private int mCount = 2;
 
     private ILauncherListener launcherListener;
 

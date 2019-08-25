@@ -12,7 +12,6 @@ import com.qindadai.latte.delegates.LatteDelegate;
 import com.qindadai.latte.ec.launcher.LauncherDelegate;
 import com.qindadai.latte.ec.sign.ISignListener;
 import com.qindadai.latte.ec.sign.SignInDelegate;
-import com.qindadai.latte.ec.sign.SignUpDelegate;
 import com.qindadai.latte.ui.launcher.ILauncherListener;
 import com.qindadai.latte.ui.launcher.OnLauncherFinishTag;
 

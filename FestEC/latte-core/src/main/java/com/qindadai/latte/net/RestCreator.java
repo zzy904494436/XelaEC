@@ -85,6 +85,4 @@ public class RestCreator {
     public static RxRestService getRxRestService() {
         return RxRestServiceHolder.RXREST_SERVICE;
     }
-
-
 }

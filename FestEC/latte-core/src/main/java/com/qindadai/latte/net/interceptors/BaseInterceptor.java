@@ -15,7 +15,6 @@ import okhttp3.Response;
  */
 public abstract class BaseInterceptor implements Interceptor {
 
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         return null;

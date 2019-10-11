@@ -21,7 +21,7 @@ import retrofit2.http.Url;
 
 /**
  * Created by mymac on 2019/1/10.
- * func: \
+ * func:
  * 接口
  */
 public interface RestService {
@@ -54,6 +54,5 @@ public interface RestService {
     @Multipart
     @POST
     Call<String> upload(@Url String url, @Part MultipartBody.Part file);
-
 
 }

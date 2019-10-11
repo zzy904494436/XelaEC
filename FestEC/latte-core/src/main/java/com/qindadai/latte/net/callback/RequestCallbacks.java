@@ -3,6 +3,7 @@ package com.qindadai.latte.net.callback;
 import android.os.Handler;
 import android.util.Log;
 
+
 import com.qindadai.latte.ui.LatteLoader;
 import com.qindadai.latte.ui.LoaderStyle;
 

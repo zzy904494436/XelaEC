@@ -103,7 +103,6 @@ public class FileUtil {
         return dateFormat.format(date);
     }
 
-
     private static void refreshDCIM() {
         if (Build.VERSION.SDK_INT >= 19) {
             MediaScannerConnection.scanFile(Latte.getApplication(),

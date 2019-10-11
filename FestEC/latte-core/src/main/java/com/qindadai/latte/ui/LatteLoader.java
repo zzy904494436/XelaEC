@@ -36,7 +36,6 @@ public class LatteLoader {
         int deviceWidth = DimenUtil.getScreenWidth();
         int deviceHeight = DimenUtil.getScreenHeight();
 
-
         final Window dialogWindow = dialog.getWindow();
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
@@ -66,6 +65,5 @@ public class LatteLoader {
             }
         }
     }
-
 
 }

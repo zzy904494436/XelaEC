@@ -59,7 +59,6 @@ public class Configurator {
         return (T) LATTE_CONFIGS.get(key);
     }
 
-
     private void initIcons() {
         if (ICONS.size() > 0) {
             final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
